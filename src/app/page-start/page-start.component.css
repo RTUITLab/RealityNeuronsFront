@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.container > .header {
+    margin-bottom: 30pt;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container > .header .title {
+    font-weight: 500;
+    font-size: 24pt;
+}
+
+.container > .header .body {
+    color: #888;
+    margin-top: 30pt;
+    font-weight: 300;
+    font-size: 12pt;
+    max-width: 600pt;
+    text-align: justify;
+}
+
+.timeline {
+    margin-top: 10pt;
+}
+
+.gobtn {
+    margin-top: 30pt;
+}
+
+.btn {
+    padding: 10pt 70pt;
+    background-color: #0abde3;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #48dbfb;
+}
+
