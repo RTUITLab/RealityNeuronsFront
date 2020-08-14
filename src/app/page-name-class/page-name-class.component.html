@@ -1,1 +1,26 @@
-<p>page-name-class works!</p>
+<div class="container">
+    <div class="timeline-overlay">
+        <div class="inner">
+            <app-steps-timeline [steps]="[true, false, false, false]"></app-steps-timeline>
+        </div>
+
+    </div>
+
+    <div class="header">
+        <div class="title">Выбор имени класса</div>
+        <div class="body">
+            Именем класса является слово, характеризующее все объекты, изображение которых будут загружены далее. 
+            <b>Например:</b> кабриолет, пикап, седан.
+            <br><br>
+            Вводите название класса на английском языке, без пробелов.
+        </div>
+    </div>
+
+
+    <div class="form">
+        <input class="text" [(ngModel)]="className" type="text" name="" id="">
+        <div class="btn" (click)="proceed()">Далее</div>
+    </div> 
+
+
+</div>

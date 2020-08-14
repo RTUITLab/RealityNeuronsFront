@@ -56,10 +56,25 @@
     color: #fff;
     font-weight: 500;
     cursor: pointer;
+    text-align: center;
 }
 
 .btn:hover {
     background-color: #48dbfb;
+}
+
+.form .btn {
+    width: 150pt;
+    padding: 10pt 0;
+    background-color: #0abde3;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+}
+.form .btn:not(:first-child) {
+    margin-left: 25pt;
 }
 
 .text {
@@ -79,3 +94,35 @@
     padding: 0 9pt;
 }
 
+
+.loader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    width: 620pt;
+}
+.loader > * {
+    width: 300pt;
+    display: flex;
+    flex-direction: column;
+}
+
+.loader > * > * {
+    margin: 10pt 0;
+}
+.loader .text {
+    width: unset;
+}
+
+.loader .btn {
+    padding: 10pt 20pt;
+}
+
+.images {
+    border-radius: 5px;
+    border: 1px solid #D6DCE0;
+    width: 600pt;
+    margin: 15pt 0;
+    padding: 10pt;
+}
