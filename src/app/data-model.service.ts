@@ -10,6 +10,7 @@ const protoStatus = {
 };
 
 const protoData = {
+  status: 'idle',
   class_name: '',
   image_ids: [],
   session_id: '',
@@ -71,10 +72,19 @@ export class DataModelService {
   }
 
   ImagesFromYandex(search_request, count) {
+    this.data.value.status = 'RequestDatasetImagesFromYandex';
+    this.update();
     this.api.RequestDatasetImagesFromYandex(this.data.value.session_id, search_request, count).then((image_ids) => {
       this.data.value.image_ids = this.data.value.image_ids.concat(image_ids);
+      this.data.value.status = 'idle';
       this.update();
       console.log(this.data.value);
+    });
+  }
+
+  removeImage(image_id) {
+    this.api.removeImage(this.data.value.session_id, image_id).then(() => {
+      this.getImageIds();
     });
   }
 }
