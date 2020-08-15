@@ -17,22 +17,25 @@ stages:
     displayName: Build and Push
     steps:
     - task: Npm@1
+      displayName: npm ci
       inputs:
         command: 'ci'
     - task: Npm@1
+      displayName: npm run build
       inputs:
         command: 'custom'
         customCommand: 'run build'
-    # - task: Docker@2
-    #   displayName: Build and Push image
-    #   inputs:
-    #     containerRegistry: 'RTU IT LAB Docker registry'
-    #     repository: 'rtuitlab/the-projects'
-    #     command: 'buildAndPush'
-    #     Dockerfile: './Dockerfile'
-    #     tags: |
-    #       $(tag)
-    #       latest
+    - task: Docker@2
+      displayName: Build and Push image
+      inputs:
+        containerRegistry: 'RTU IT LAB Docker registry'
+        repository: 'rtuitlab/realityneurons-front'
+        command: 'buildAndPush'
+        Dockerfile: './deploy/Dockerfile'
+        buildContext: '.'
+        tags: |
+          $(tag)
+          latest
 # - stage: Deploy
 #   displayName: Deploy service
 #   jobs:
