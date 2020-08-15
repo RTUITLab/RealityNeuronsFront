@@ -13,12 +13,14 @@ import { PageNameClassTimelineComponent } from './page-name-class-timeline/page-
 import { PageImagesComponent } from './page-images/page-images.component';
 import { StepsTimelineComponent } from './steps-timeline/steps-timeline.component';
 import { PageImagesItemComponent } from './page-images-item/page-images-item.component';
+import { PageTrainingComponent } from './page-training/page-training.component';
 
 
 const appRoutes: Routes =[
   { path: '', component: PageStartComponent},
   { path: 'name-class', component: PageNameClassComponent},
-  { path: 'images', component: PageImagesComponent}
+  { path: 'images', component: PageImagesComponent},
+  { path: 'training', component: PageTrainingComponent}
 ];
 
 @NgModule({
@@ -30,7 +32,8 @@ const appRoutes: Routes =[
     PageNameClassTimelineComponent,
     PageImagesComponent,
     StepsTimelineComponent,
-    PageImagesItemComponent
+    PageImagesItemComponent,
+    PageTrainingComponent
   ],
   imports: [
     BrowserModule,

@@ -59,4 +59,7 @@ export class PageImagesComponent implements OnInit {
     this.dm.ImagesFromYandex(this.search_request, this.count);
   }
 
+  startTraining() {
+    this.dm.startTraining();
+  }
 }

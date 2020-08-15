@@ -87,4 +87,15 @@ export class BackendApiService {
     });
   }
 
+  async startTraining(session_id, class_name): Promise<string> {
+    // сюда приходит 2 параметра - id сессии и имя класса, указанное пользователю
+    return new Promise<string>((resolve, reject) => {
+      this.httpClient.post<ImageId>(this.serverURL, {
+        session_id: session_id,
+        type: "start_training",
+        class_name: class_name
+    }).subscribe(() => resolve())
+    });
+  }
+
 }
