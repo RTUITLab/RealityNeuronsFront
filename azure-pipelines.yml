@@ -36,20 +36,20 @@ stages:
         tags: |
           $(tag)
           latest
-# - stage: Deploy
-#   displayName: Deploy service
-#   jobs:
-#   - job: Deploy_the_projects
-#     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-#     steps:
-#     - task: SSH@0
-#       displayName: Restart service
-#       inputs:
-#         sshEndpoint: 'Situation Center SSH Connection'
-#         runOptions: 'inline'
-#         inline: |
-#           cd /home/admin/theproject
-#           docker-compose --no-ansi pull
-#           docker-compose --no-ansi up -d
-#         failOnStdErr: false
-#         readyTimeout: '20000'
+- stage: Deploy
+  displayName: Deploy service
+  jobs:
+  - job: Deploy_the_projects
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    steps:
+    - task: SSH@0
+      displayName: Restart service
+      inputs:
+        sshEndpoint: 'sc vm'
+        runOptions: 'inline'
+        inline: |
+          cd /home/admin/realityneurons
+          docker-compose --no-ansi pull 2>&1
+          docker-compose --no-ansi up -d 2>&1
+        failOnStdErr: false
+        readyTimeout: '20000'
