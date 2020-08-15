@@ -25,7 +25,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/fonts/montserrat/stylesheet.css"
+              "src/fonts/montserrat/stylesheet.css",
+              "node_modules/ionicons/dist/scss/ionicons.scss"
             ],
             "scripts": []
           },
