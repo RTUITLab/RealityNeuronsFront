@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="timeline-overlay">
+        <div class="inner">
+            <app-steps-timeline [steps]="[true, true, false, false]"></app-steps-timeline>
+        </div>
+
+    </div>
+
+    <div class="header">
+        <div class="title">Загрузка изображений</div>
+        <div class="body">
+            Чтобы обучить нейронную сеть распознавать объекты определенного класса, необходимо загрузить около 100 или
+            более изображений объектов этого класса. Вы можете загрузить их вручную, либо поручить нам загрузить примеры
+            из сервиса Яндекс.Картинки.
+        </div>
+    </div>
+
+    <div class="loader">
+        <div class="from-pc">
+            Загрузить изображения с пк: <br>
+            <input type="file" accept="image/*" (change)="changeListener($event)" multiple>
+            <div class="btn" (click)="loadFromPC()">загрузить с пк</div>
+        </div>
+        <div class="from-yandex">
+            Загрузить изображения из сервиса Яндекс.Картинки:
+            <input class="text" [(ngModel)]="search_request" type="text" name="" id="" placeholder="Поисковый запрос">
+            <input class="text" [(ngModel)]="count" type="text" name="" id="" placeholder="количество">
+            <div class="btn" (click)="loadFromYandex()">загрузить из Яндекс.Картинок</div>
+        </div>
+    </div>
+
+    <div class="images">
+        <app-page-images-item *ngFor="let item of data.image_ids" [id]="item" ></app-page-images-item>
+    </div>
+
+
+    <div class="form">
+        <div class="btn">Назад</div>
+        <div class="btn">Начать обучение</div>
+    </div>
+
+
+</div>

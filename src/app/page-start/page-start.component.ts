@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataModelService } from '../data-model.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-start',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageStartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dm: DataModelService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  proceed() {
+    this.dm.openSession().then(() => {
+      this.router.navigateByUrl('/name-class');
+    });
+  }
 }
