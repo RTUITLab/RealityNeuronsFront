@@ -1,42 +1,78 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+
+export interface SessionId{
+  status: string;
+  session_id: string;
+}
+
+export interface ImageId{
+  status: string;
+  image_id: string;
+}
+
+export interface ImageIds{
+  status: string;
+  image_ids: string[];
+}
+
+export interface Approval{
+  status: string;
+}
+
+export interface Prediction{
+  status: string;
+  image_id: string;
+  model_solution: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendApiService {
+  constructor(private httpClient: HttpClient) { }
+  private serverURL: string;
+  
 
-  constructor() { }
-
-
-  async requestSession() {
+  async requestSession(): Promise<string> {
     // сюда приходит 0 параметров
     return new Promise<string>((resolve, reject) => {
-      resolve('test_session'); // этот код должен возвращать сессию
+      this.httpClient.post<SessionId>(this.serverURL, {type: "session_begin"}).subscribe(data => resolve(data.session_id));
     });
   }
 
-  async requestImageIds(session_id) {
+  async requestImageIds(session_id): Promise<string[]> {
     // сюда приходит 1 параметр - id сессии
     return new Promise<string[]>((resolve, reject) => {
-      resolve(['1_test_id', '1_test_id']); // этот код должен возвращать список id картинок, либо список ссылок на картинки
+      const body = {
+        session_id: session_id,
+        type: "get_image_list"
+      }
+      this.httpClient.post<ImageIds>(this.serverURL, body).subscribe(data => resolve(data.image_ids));
     });
   }
 
-  async uploadDatasetImage(session_id, image) {
+  async uploadDatasetImage(session_id, image): Promise<string> {
     // сюда приходит 2 параметра - id сессии и картинка, сериализованную как base64 (string)
     return new Promise<string>((resolve, reject) => {
-      resolve('LoadFromPC_test_id'); // этот код должен возвращать id картинки, либо ссылку на картинку
+      this.httpClient.post<ImageId>(this.serverURL, {
+        session_id: session_id,
+        type: "upload_data",
+        image: image
+    }).subscribe(data => resolve(data.image_id))
     });
   }
 
-  async RequestDatasetImagesFromYandex(session_id, search_request, count) {
+  async RequestDatasetImagesFromYandex(session_id, search_request, count): Promise<string[]> {
     // сюда приходит 3 параметра - id сессии, целевой запрос для поиска и количество изображений для парсинга.
     return new Promise<string[]>((resolve, reject) => {
-      let s: string[] = [];
-      for (let i = 0; i < count; i++) {
-        s.push('LoadFromYandex_req_' + search_request + '_test_id_' + (i+1).toString());
+      const body = {
+        session_id: session_id,
+        type: "parse_data_yandex",
+        search_request: search_request,
+        count: count
       }
-      resolve(s); // этот код должен возвращать список id картинок, либо список ссылок на картинки
+      this.httpClient.post<ImageIds>(this.serverURL, body).subscribe(data => resolve(data.image_ids))
     });
   }
 
