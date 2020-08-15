@@ -76,4 +76,15 @@ export class BackendApiService {
     });
   }
 
+  async removeImage(session_id, image_id): Promise<string> {
+    // сюда приходит 2 параметра - id сессии и id картинки, которую необходимо удалить
+    return new Promise<string>((resolve, reject) => {
+      this.httpClient.post<ImageId>(this.serverURL, {
+        session_id: session_id,
+        type: "remove_image",
+        image_id: image_id
+    }).subscribe(() => resolve())
+    });
+  }
+
 }

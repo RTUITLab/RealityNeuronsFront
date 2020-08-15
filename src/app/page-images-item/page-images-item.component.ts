@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { DataModelService } from '../data-model.service';
 
 @Component({
@@ -8,14 +8,21 @@ import { DataModelService } from '../data-model.service';
 })
 export class PageImagesItemComponent implements OnInit {
 
-  constructor(private dm: DataModelService) { }
+  constructor(private dm: DataModelService, private cd: ChangeDetectorRef) { }
+
+  
 
   ngOnInit(): void {
+    
   }
 
   @Input() id: string;
 
   link() {
     return this.dm.getLinkById(this.dm.data.value.session_id, this.id)
+  }
+
+  removeImage() {
+    this.dm.removeImage(this.id);
   }
 }
