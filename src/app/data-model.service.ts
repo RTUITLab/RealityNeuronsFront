@@ -49,8 +49,9 @@ export class DataModelService {
     console.log(this.data.value);
   }
 
-  getLinkById(id) {
-    return 'testlink'+id;
+  getLinkById(session_id, id) {
+    // return 'https://www.justmortgagebrokers.co.uk/content/uploads/2017/10/cat.png';
+    return 'https://res.cloudinary.com/nekolya75/image/upload/v1597424731/RealityNeurons/' + session_id + '/' + id;
   }
 
   getImageIds() {

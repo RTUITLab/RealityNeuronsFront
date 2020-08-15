@@ -16,6 +16,6 @@ export class PageImagesItemComponent implements OnInit {
   @Input() id: string;
 
   link() {
-    return this.dm.getLinkById(this.id)
+    return this.dm.getLinkById(this.dm.data.value.session_id, this.id)
   }
 }
