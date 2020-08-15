@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="timeline-overlay">
+        <div class="inner">
+            <app-steps-timeline [steps]="[true, true, true, true]"></app-steps-timeline>
+        </div>
+
+    </div>
+
+    <div class="header">
+        <div class="title">Ваша модель готова!</div>
+        <div class="body">
+            Осталось только проверить результат обучения. Как и на втором шаге, Вы можете либо загрузить тестовую картинку вручную, либо поручить нам загрузить пример
+            из сервиса Яндекс.Картинки.
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="loader">
+            <div class="from-pc">
+                Загрузить изображения с пк: <br>
+                <input type="file" accept="image/*" (change)="changeListener($event)">
+                <div class="btn" (click)="loadFromPC()">загрузить с пк</div>
+            </div>
+            <div class="from-yandex">
+                Загрузить изображение из сервиса Яндекс.Картинки:
+                <input class="text" [(ngModel)]="search_request" type="text" name="" id="" placeholder="Поисковый запрос">
+                <div class="btn" (click)="loadFromYandex()" *ngIf="data.status != 'RequestDatasetImagesFromYandex'">загрузить из Яндекс.Картинок</div>
+                <div class="btn disabled" *ngIf="data.status == 'RequestDatasetImagesFromYandex'">загрузка выполняется...</div>
+            </div>
+        </div>
+    
+        <div class="image">
+            <div class="images">
+                <app-page-images-item *ngFor="let item of data.image_ids" [id]="item" ></app-page-images-item>
+                
+            </div>
+            <div class="label">
+                Кажется, на картинке ...
+            </div>
+            
+        </div>
+        
+    </div>
+
+    
+
+
+    <div class="form">
+        <div class="btn" routerLink="/images">Назад</div>
+        <div class="btn" routerLink="/">Готово!</div>
+    </div>
+
+
+</div>

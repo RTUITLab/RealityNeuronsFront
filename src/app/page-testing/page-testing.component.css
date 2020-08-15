@@ -130,8 +130,8 @@
 .images {
     border-radius: 5px;
     border: 1px solid #D6DCE0;
-    width: 500pt;
-    height: 300pt;
+    width: 350pt;
+    height: 250pt;
     margin-left: 25pt;
     padding: 10pt;
     display: flex;
@@ -153,4 +153,10 @@
 
     margin: 25pt 0;
 
+}
+
+.label {
+    text-align: center;
+    margin-top: 10pt;
+    margin-left: 25pt;
 }

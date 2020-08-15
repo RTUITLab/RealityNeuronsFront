@@ -14,13 +14,15 @@ import { PageImagesComponent } from './page-images/page-images.component';
 import { StepsTimelineComponent } from './steps-timeline/steps-timeline.component';
 import { PageImagesItemComponent } from './page-images-item/page-images-item.component';
 import { PageTrainingComponent } from './page-training/page-training.component';
+import { PageTestingComponent } from './page-testing/page-testing.component';
 
 
 const appRoutes: Routes =[
   { path: '', component: PageStartComponent},
   { path: 'name-class', component: PageNameClassComponent},
   { path: 'images', component: PageImagesComponent},
-  { path: 'training', component: PageTrainingComponent}
+  { path: 'training', component: PageTrainingComponent},
+  { path: 'testing', component: PageTestingComponent}
 ];
 
 @NgModule({
@@ -33,7 +35,8 @@ const appRoutes: Routes =[
     PageImagesComponent,
     StepsTimelineComponent,
     PageImagesItemComponent,
-    PageTrainingComponent
+    PageTrainingComponent,
+    PageTestingComponent
   ],
   imports: [
     BrowserModule,

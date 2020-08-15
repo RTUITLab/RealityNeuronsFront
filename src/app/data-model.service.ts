@@ -15,6 +15,10 @@ const protoData = {
   class_name: '',
   image_ids: [],
   session_id: '',
+  test_result: {
+    image_id: '',
+    model_solution: ''
+  }
 };
 
 @Injectable({
@@ -93,6 +97,17 @@ export class DataModelService {
     this.router.navigateByUrl('/training');
     this.api.startTraining(this.data.value.session_id, this.data.value.class_name).then(() => {
       this.router.navigateByUrl('/testing');
+    });
+  }
+
+  TestImagesFromYandex(search_request) {
+    this.data.value.status = 'RequestTestImageFromYandex';
+    this.update();
+    this.api.RequestTestImageFromYandex(this.data.value.session_id, search_request).then((test_result) => {
+      this.data.value.test_result = test_result;
+      this.data.value.status = 'idle';
+      this.update();
+      console.log(this.data.value);
     });
   }
 }
