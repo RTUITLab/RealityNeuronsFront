@@ -2,26 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 export interface SessionId{
-  status: string;
+  status: number;
   session_id: string;
 }
 
 export interface ImageId{
-  status: string;
+  status: number;
   image_id: string;
 }
 
 export interface ImageIds{
-  status: string;
+  status: number;
   image_ids: string[];
 }
 
 export interface Approval{
-  status: string;
+  status: number;
 }
 
 export interface Prediction{
-  status: string;
+  status: number;
   image_id: string;
   model_solution: string;
 }
@@ -31,7 +31,7 @@ export interface Prediction{
 })
 export class BackendApiService {
   constructor(private httpClient: HttpClient) { }
-  private serverURL: string;
+  private serverURL: string = "http://localhost:5000";
   
 
   async requestSession(): Promise<string> {
