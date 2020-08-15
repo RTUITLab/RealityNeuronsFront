@@ -1,13 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DataModelService } from '../data-model.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-page-images',
-  templateUrl: './page-images.component.html',
-  styleUrls: ['./page-images.component.css']
+  selector: 'app-page-testing',
+  templateUrl: './page-testing.component.html',
+  styleUrls: ['./page-testing.component.css']
 })
-export class PageImagesComponent implements OnInit {
+export class PageTestingComponent implements OnInit {
 
   constructor(private dm: DataModelService, private cd: ChangeDetectorRef) { }
 
@@ -62,4 +61,5 @@ export class PageImagesComponent implements OnInit {
   startTraining() {
     this.dm.startTraining();
   }
+
 }

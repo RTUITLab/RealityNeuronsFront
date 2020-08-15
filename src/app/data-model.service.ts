@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BackendApiService } from './backend-api.service';
+import { Router } from '@angular/router';
 
 const protoStatus = {
   loading: false,
@@ -14,6 +15,10 @@ const protoData = {
   class_name: '',
   image_ids: [],
   session_id: '',
+  test_result: {
+    image_id: '',
+    model_solution: ''
+  }
 };
 
 @Injectable({
@@ -21,7 +26,7 @@ const protoData = {
 })
 export class DataModelService {
 
-  constructor(private api: BackendApiService) { }
+  constructor(private api: BackendApiService, private router: Router) { }
 
   public status: BehaviorSubject<any> = new BehaviorSubject<any>(protoStatus);
   public data: BehaviorSubject<any> = new BehaviorSubject<any>(protoData);
@@ -85,6 +90,24 @@ export class DataModelService {
   removeImage(image_id) {
     this.api.removeImage(this.data.value.session_id, image_id).then(() => {
       this.getImageIds();
+    });
+  }
+
+  startTraining() {
+    this.router.navigateByUrl('/training');
+    this.api.startTraining(this.data.value.session_id, this.data.value.class_name).then(() => {
+      this.router.navigateByUrl('/testing');
+    });
+  }
+
+  TestImagesFromYandex(search_request) {
+    this.data.value.status = 'RequestTestImageFromYandex';
+    this.update();
+    this.api.RequestTestImageFromYandex(this.data.value.session_id, search_request).then((test_result) => {
+      this.data.value.test_result = test_result;
+      this.data.value.status = 'idle';
+      this.update();
+      console.log(this.data.value);
     });
   }
 }

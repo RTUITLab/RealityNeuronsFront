@@ -16,6 +16,12 @@ export interface ImageIds{
   image_ids: string[];
 }
 
+export interface ModelSolution{
+  image_id: string;
+  model_solution: string;
+}
+
+
 export interface Approval{
   status: number;
 }
@@ -78,12 +84,35 @@ export class BackendApiService {
 
   async removeImage(session_id, image_id): Promise<string> {
     // сюда приходит 2 параметра - id сессии и id картинки, которую необходимо удалить
-    return new Promise<string>((resolve, reject) => {
-      this.httpClient.post<ImageId>(this.serverURL, {
+    return new Promise<null>((resolve, reject) => {
+      this.httpClient.post<null>(this.serverURL, {
         session_id: session_id,
         type: "remove_image",
         image_id: image_id
     }).subscribe(() => resolve())
+    });
+  }
+
+  async startTraining(session_id, class_name): Promise<string> {
+    // сюда приходит 2 параметра - id сессии и имя класса, указанное пользователю
+    return new Promise<null>((resolve, reject) => {
+      this.httpClient.post<null>(this.serverURL, {
+        session_id: session_id,
+        type: "start_training",
+        class_name: class_name
+    }).subscribe(() => resolve())
+    });
+  }
+
+  async RequestTestImageFromYandex(session_id, search_request): Promise<string[]> {
+    // сюда приходит  параметра - id сессии и целевой запрос поиска для парсинга.
+    return new Promise<any>((resolve, reject) => {
+      const body = {
+        session_id: session_id,
+        type: "parse_test_yandex",
+        search_request: search_request,
+      }
+      this.httpClient.post<ImageIds>(this.serverURL, body).subscribe(data => resolve(data));
     });
   }
 
