@@ -24,8 +24,8 @@
             <div class="from-yandex">
                 Загрузить изображение из сервиса Яндекс.Картинки:
                 <input class="text" [(ngModel)]="search_request" type="text" name="" id="" placeholder="Поисковый запрос">
-                <div class="btn" (click)="loadFromYandex()" *ngIf="data.status != 'RequestDatasetImagesFromYandex'">загрузить из Яндекс.Картинок</div>
-                <div class="btn disabled" *ngIf="data.status == 'RequestDatasetImagesFromYandex'">загрузка выполняется...</div>
+                <div class="btn" (click)="loadFromYandex()" *ngIf="data.status != 'RequestTestImageFromYandex'">загрузить из Яндекс.Картинок</div>
+                <div class="btn disabled" *ngIf="data.status == 'RequestTestImageFromYandex'">загрузка выполняется...</div>
             </div>
         </div>
     
