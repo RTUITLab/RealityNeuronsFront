@@ -37,7 +37,7 @@ export interface Prediction{
 })
 export class BackendApiService {
   constructor(private httpClient: HttpClient) { }
-  private serverURL: string = "https://7f0e168462e5.ngrok.io";
+  private serverURL: string = "https://e7eed9b7d331.ngrok.io";
   
 
   async requestSession(): Promise<string> {
