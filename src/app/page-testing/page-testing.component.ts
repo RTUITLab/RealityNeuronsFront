@@ -62,4 +62,8 @@ export class PageTestingComponent implements OnInit {
     this.dm.startTraining();
   }
 
+  link() {
+    return this.dm.getLinkById(this.data.session_id, this.data.test_result.image_id);
+  }
+
 }
