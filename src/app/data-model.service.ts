@@ -88,6 +88,8 @@ export class DataModelService {
   }
 
   removeImage(image_id) {
+    this.data.value.image_ids.splice(this.data.value.image_ids.indexOf(image_id), 1);
+    this.update();
     this.api.removeImage(this.data.value.session_id, image_id).then(() => {
       this.getImageIds();
     });
