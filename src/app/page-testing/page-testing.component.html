@@ -31,11 +31,11 @@
     
         <div class="image">
             <div class="images">
-                <app-page-images-item *ngFor="let item of data.image_ids" [id]="item" ></app-page-images-item>
+                <img [src]="link()" alt="">
                 
             </div>
             <div class="label">
-                Кажется, на картинке ...
+                Кажется, на картинке <b *ngIf="data.test_result.model_solution == ''">...</b><b *ngIf="data.test_result.model_solution != ''">{{data.test_result.model_solution}}</b>
             </div>
             
         </div>
